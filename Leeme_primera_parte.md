@@ -1,65 +1,58 @@
-🏥 Proyecto: Centro de Rehabilitación
+## 🏥 Proyecto: Centro de Rehabilitación
 
-Lenguaje: Python
-Framework: Django
-Editor: Visual Studio Code
+Lenguaje: 🐍 Python
+Framework: 🌐 Django
+Editor: 💻 Visual Studio Code
 
 ⚙️ Procedimiento Inicial
 
-Crear carpeta del proyecto llamada:
-
+# 1️⃣ Crear carpeta del proyecto
 UIII_Centroderehabilitacion_0368
 
+# 2️⃣ Abrir Visual Studio Code
 
-Abrir VS Code sobre la carpeta UIII_Centroderehabilitacion_0368.
+Abrir la carpeta UIII_Centroderehabilitacion_0368 desde VS Code.
 
-Abrir la terminal integrada en VS Code.
+# 3️⃣ Abrir la terminal en VS Code
 
-Crear el entorno virtual llamado .venv desde la terminal:
+Ir a Terminal → Nueva terminal.
 
+# 4️⃣ Crear entorno virtual .venv
 python -m venv .venv
 
-
-Activar el entorno virtual:
-
+# 5️⃣ Activar entorno virtual
 En Windows:
-
 .venv\Scripts\activate
 
-
 En Mac/Linux:
-
 source .venv/bin/activate
 
+# 6️⃣ Seleccionar intérprete de Python
 
-Activar el intérprete de Python en VS Code (Ctrl + Shift + P → Python: Select Interpreter).
+Presionar Ctrl + Shift + P → Python: Select Interpreter
+Seleccionar el intérprete dentro de .venv.
 
-Instalar Django:
-
+# 7️⃣ Instalar Django
 pip install django
 
-
-Crear el proyecto sin duplicar carpeta:
-
+# 8️⃣ Crear el proyecto sin duplicar carpeta
 django-admin startproject backend_centroderehabilitacion .
 
-
-Ejecutar el servidor en el puerto 8368:
-
+# 9️⃣ Ejecutar el servidor en el puerto 8368
 python manage.py runserver 8368
 
-
-Copiar y pegar el link en el navegador para comprobar el funcionamiento.
-
+# 0️⃣ Copiar el enlace en el navegador
 http://127.0.0.1:8368/
 
-🧩 Crear Aplicación
-
-Crear la aplicación llamada app_paciente:
-
+🧩 Creación de la Aplicación
+# 1️⃣ Crear la aplicación app_paciente
 python manage.py startapp app_paciente
 
 🧠 Archivo models.py
+# 2️⃣ Crear los modelos de la base de datos
+
+Abrir app_paciente/models.py y copiar lo siguiente:
+
 from django.db import models
 
 # ==========================================
@@ -117,26 +110,21 @@ class Terapia(models.Model):
         ('Lenguaje', 'Lenguaje')
     ])
     fecha_inicio = models.DateField()
-
-    # Relación 1 a muchos: un paciente puede tener muchas terapias
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name="terapias")
-
-    # Relación muchos a muchos: una terapia puede tener varios terapeutas y viceversa
     terapeutas = models.ManyToManyField(Terapeuta, related_name="terapias")
 
     def __str__(self):
         return self.nom_ter
 
 🛠️ Migraciones
-
-12.5. Realizar las migraciones:
-
+# 3️⃣ Crear y aplicar migraciones
 python manage.py makemigrations
 python manage.py migrate
 
-🧑‍⚕️ Trabajando con el Modelo PACIENTE
+🧑‍⚕️ Trabajo con el Modelo: PACIENTE
+# 4️⃣ Crear funciones en views.py
 
-En el archivo views.py de la aplicación app_paciente, crear las funciones:
+Agregar las siguientes vistas:
 
 inicio_live_side
 
@@ -148,26 +136,26 @@ realizar_actualizacion_paciente
 
 borrar_paciente
 
-Crear la carpeta templates dentro de app_paciente.
-
-Dentro de templates, crear los siguientes archivos HTML:
-
+🎨 Plantillas HTML
+# 5️⃣ Crear la carpeta templates dentro de app_paciente
+# 6️⃣ Dentro de templates, crear los archivos:
 base.html
 header.html
 navbar.html
 footer.html
 inicio.html
 
+# 7️⃣ En base.html
 
-En base.html, agregar Bootstrap para CSS y JS.
+Agregar Bootstrap (CSS y JS) para el diseño y componentes.
 
-En navbar.html, incluir las opciones:
+# 8️⃣ En navbar.html
 
-Sistema de Administración Live Side
+Agregar las opciones del sistema:
 
-Inicio
-
-Pacientes
+🔹 Sistema de Administración Live Side
+🔹 Inicio
+🔹 Pacientes
 
 Agregar Paciente
 
@@ -177,7 +165,7 @@ Actualizar Paciente
 
 Borrar Paciente
 
-Terapeutas
+🔹 Terapeutas
 
 Agregar Terapeuta
 
@@ -187,7 +175,7 @@ Actualizar Terapeuta
 
 Borrar Terapeuta
 
-Terapias
+🔹 Terapias
 
 Agregar Terapia
 
@@ -197,19 +185,31 @@ Actualizar Terapia
 
 Borrar Terapia
 
-En footer.html, incluir:
+# 9️⃣ En footer.html
+
+Agregar:
 
 Derechos de autor
 
 Fecha del sistema
 
-Texto: Creado por Jennifer Sarabia, CBTis 128
+Texto:
 
-Debe mantenerse fijo al final de la página.
+Creado por Jennifer Sarabia, CBTis 128
 
-En inicio.html, incluir información del sistema y una imagen sobre el centro de rehabilitación (tomada de la red).
 
-📂 Estructura de Archivos y Carpetas
+Hacer que el footer esté fijo al final de la página.
+
+# 0️⃣ En inicio.html
+
+Colocar:
+
+Información del sistema
+
+Una imagen representativa de un centro de rehabilitación
+
+📂 Estructura de Carpetas
+## 1️⃣ Estructura final esperada:
 app_paciente/
 │
 ├── templates/
@@ -224,30 +224,54 @@ app_paciente/
 │       ├── actualizar_paciente.html
 │       └── borrar_paciente.html
 
-🌐 Configuración y Enlaces
+🌐 Configuraciones
+# 2️⃣ Crear urls.py dentro de app_paciente
 
-Crear el archivo urls.py dentro de app_paciente y enlazar las funciones de views.py para permitir las operaciones CRUD.
+Enlazar las funciones de views.py para las operaciones CRUD.
 
-Registrar app_paciente en INSTALLED_APPS dentro del archivo settings.py.
+# 3️⃣ Registrar app_paciente en settings.py
 
-Enlazar las rutas en el urls.py principal del proyecto (backend_centroderehabilitacion/urls.py).
+Agregar:
 
-Registrar los modelos en admin.py y volver a realizar migraciones.
+'app_paciente',
 
-🎨 Diseño y Funcionalidad
 
-Utilizar colores suaves, atractivos y modernos.
+dentro de INSTALLED_APPS.
 
-Las páginas deben ser sencillas y funcionales.
+# 4️⃣ Configurar el urls.py principal del proyecto
 
-No validar entrada de datos (por el momento).
+Enlazarlo con app_paciente/urls.py.
 
-Al inicio, crear la estructura completa de carpetas y archivos.
+# 5️⃣ Registrar modelos en admin.py
 
-Proyecto totalmente funcional.
+Y ejecutar nuevamente:
+
+python manage.py makemigrations
+python manage.py migrate
+
+💅 Diseño y Estilo
+# 6️⃣ Indicaciones visuales
+
+Usar colores suaves y profesionales (azules, grises, blancos).
+
+Diseño limpio y ordenado.
+
+Evitar validaciones complejas.
+
+Crear todas las carpetas antes de correr el servidor.
+
+El sistema debe ser 100% funcional.
 
 🚀 Ejecución Final
-
-Ejecutar el servidor en el puerto 8368:
-
+## 7️⃣ Ejecutar servidor
 python manage.py runserver 8368
+
+
+Abrir en el navegador:
+
+http://127.0.0.1:8368/
+
+✨ Créditos
+
+Sistema de Administración Live Side
+📅 Creado por Jennifer Sarabia | CBTis 128
